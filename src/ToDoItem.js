@@ -1,6 +1,8 @@
-const ToDoItem = ({description, completed}) => {
+const ToDoItem = ({id, description, completed, handleDelete}) => {
     return (
-        <div>{description} {completed}</div>
+        <div>{description} {completed}
+            <button className="deleteButton" onClick={() => handleDelete(id)}>X</button>
+        </div>
     );
 };
 

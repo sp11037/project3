@@ -6,8 +6,8 @@ import AddButton from './AddButton';
 const ToDoPage = () => {
     const [filter, setFilter] = useState('all');
     const [items, setItems] = useState([
-        {description: "first item", completed: "no"},
-        {description: "second item", completed: "yes"},
+        {id: 100, description: "first item", completed: "no"},
+        {id: 101, description: "second item", completed: "yes"},
     ]);
 
     const newItemRef = createRef();
@@ -17,17 +17,12 @@ const ToDoPage = () => {
         setFilter(e.target.value);
     };
 
-    // display to do items on screen
-    const itemList = items.map(item =>
-        <ToDoItem description={item.description} completed={item.completed} />
-    );
-
     // Modal Controls
     const displayAddModal = (status) => {
         const overlay = document.querySelector(".overlay");
         const modal = document.querySelector(".modal");
 
-        if (status == "open") {
+        if (status === "open") {
             overlay.style.display = "block";
             modal.style.display = "block";
         } else {
@@ -39,7 +34,7 @@ const ToDoPage = () => {
     window.onclick = (e) => {
         const overlay = document.querySelector(".overlay");
 
-        if(e.target == overlay) {
+        if(e.target === overlay) {
             displayAddModal("close");
         }
     };
@@ -49,15 +44,25 @@ const ToDoPage = () => {
         e.preventDefault();
 
         const newItemValue = newItemRef.current.value;
-        if (newItemValue == "") {
+        if (newItemValue === "") {
             return;
         }
 
-        const newList = [...items, {description: newItemValue, completed: "no"}];
+        const newList = [...items, {id: items[items.length - 1].id + 1, description: newItemValue, completed: "no"}];
         newItemRef.current.value = "";
         displayAddModal("close");
         setItems(newList);
     };
+
+    const handleDelete = (deleteId) => {
+        const newList = items.filter(item => item.id !== deleteId);
+        setItems(newList);
+    };
+
+    // display to do items on screen
+    const itemList = items.map(item =>
+        <ToDoItem id={item.id} description={item.description} completed={item.completed} handleDelete={handleDelete} />
+    );
 
     return (
         <>
