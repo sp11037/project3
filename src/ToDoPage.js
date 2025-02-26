@@ -1,6 +1,17 @@
+import { useState } from 'react';
+import Filter from './Filter';
+
 const ToDoPage = () => {
+    const [filter, setFilter] = useState('all');
+
+    const changeFilter = (e) => {
+        setFilter(e.target.value);
+    };
+
     return (
-        <h1>To Do Page</h1>
+        <>
+            <Filter changeFilter={changeFilter} />
+        </>
     );
 };
 
