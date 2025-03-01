@@ -78,9 +78,21 @@ const ToDoPage = () => {
         setItems([...items]);
     };
 
+    const handleComplete = (id) => {
+        const itemIndex = items.findIndex(item => item.id === id);
+
+        if (items[itemIndex].completed === "yes") {
+            items[itemIndex].completed = "no";
+        } else {
+            items[itemIndex].completed = "yes";
+        }
+
+        setItems([...items]);
+    }
+
     // display to do items on screen
     const itemList = items.map(item =>
-        <ToDoItem id={item.id} description={item.description} completed={item.completed} displayModal={displayModal} handleDelete={handleDelete} />
+        <ToDoItem id={item.id} description={item.description} completed={item.completed} displayModal={displayModal} handleComplete={handleComplete} handleDelete={handleDelete} />
     );
 
     return (
