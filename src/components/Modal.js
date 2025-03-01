@@ -5,6 +5,8 @@ const Modal = ({handleAdd, addRef, handleEdit, editRef}) => {
     return (
         <>
             <div className="overlay"></div>
+
+            {/* add new item */}
             <div className="addModal modal">
                 <form action="#" onSubmit={handleAdd}>
                     <label>
@@ -14,6 +16,8 @@ const Modal = ({handleAdd, addRef, handleEdit, editRef}) => {
                     <button type="submit" className="submitNewItem">Add</button>
                 </form>
             </div>
+
+            {/* edit existing item */}
             <div className="editModal modal">
                 <form action="#" onSubmit={handleEdit}>
                     <label>

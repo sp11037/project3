@@ -10,21 +10,24 @@ const ToDoPage = () => {
         {id: 101, description: "second item", completed: "Completed"},
     ]);
 
-    const newItemRef = createRef();
-    const editItemRef = createRef();
+    // references for modal input
+    const addRef = createRef();
+    const editRef = createRef();
 
+    // holds the id for the current item being editted
     let editId = 0;
 
-    // TODO: after making a functional to do list, let the user sort the items by completion
     const changeFilter = (e) => {
         setFilter(e.target.value);
     };
 
+    // modal controls
     const displayModal = (content, status, id) => {
         const overlay = document.querySelector(".overlay");
         const modal = document.querySelector("." + content + "Modal");
 
-        if(id) {
+        // for editting an existing item
+        if (id) {
             editId = id;
         }
 
@@ -40,6 +43,7 @@ const ToDoPage = () => {
     window.onclick = (e) => {
         const overlay = document.querySelector(".overlay");
 
+        // if the user clicks outside the modal
         if(e.target === overlay) {
             displayModal(
                 document.querySelector(".addModal").style.display === "block" ? "add" : "edit" ,
@@ -48,19 +52,18 @@ const ToDoPage = () => {
         }
     };
 
-    // append new to do item to item list
+    // item interaction functions
     const handleAdd = (e) => {
         e.preventDefault();
 
-        const newItemValue = newItemRef.current.value;
-        if (newItemValue === "") {
-            return;
-        }
+        const newId = items[items.length - 1].id + 1;
+        const newItemValue = addRef.current.value;
 
-        const newList = [...items, {id: items[items.length - 1].id + 1, description: newItemValue, completed: "no"}];
-        newItemRef.current.value = "";
-        displayModal("add", "close");
+        const newList = [...items, {id: newId, description: newItemValue, completed: "Incomplete"}];
         setItems(newList);
+
+        addRef.current.value = "";
+        displayModal("add", "close");
     };
 
     const handleDelete = (deleteId) => {
@@ -72,25 +75,22 @@ const ToDoPage = () => {
         e.preventDefault();
 
         const itemIndex = items.findIndex(item => item.id === editId);
-        items[itemIndex].description = editItemRef.current.value;
-        editItemRef.current.value = "";
-        displayModal("edit", "close");
+        items[itemIndex].description = editRef.current.value;
         setItems([...items]);
+
+        editRef.current.value = "";
+        displayModal("edit", "close");
     };
 
     const handleComplete = (id) => {
         const itemIndex = items.findIndex(item => item.id === id);
 
-        if (items[itemIndex].completed === "Completed") {
-            items[itemIndex].completed = "Incomplete";
-        } else {
-            items[itemIndex].completed = "Completed";
-        }
+        items[itemIndex].completed = items[itemIndex].completed === "Completed" ? "Incomplete" : "Completed";
 
         setItems([...items]);
     }
 
-    // display to do items on screen
+    // display items on screen
     const itemList = items
         .filter(item => item.completed === filter || filter === "All")
         .map(item => <ToDoItem id={item.id} description={item.description} completed={item.completed} displayModal={displayModal} handleComplete={handleComplete} handleDelete={handleDelete} />);
@@ -100,7 +100,7 @@ const ToDoPage = () => {
             <Filter changeFilter={changeFilter} />
             {itemList}
             <button onClick={() => displayModal("add", "open")}>Add</button>
-            <Modal handleAdd={handleAdd} addRef={newItemRef} handleEdit={handleEdit} editRef={editItemRef} />
+            <Modal handleAdd={handleAdd} addRef={addRef} handleEdit={handleEdit} editRef={editRef} />
         </>
     );
 };
