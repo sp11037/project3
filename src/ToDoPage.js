@@ -1,7 +1,7 @@
 import { useState, createRef } from 'react';
 import Filter from './Filter';
 import ToDoItem from './ToDoItem';
-import AddButton from './AddButton';
+import Modal from './Modal';
 
 const ToDoPage = () => {
     const [filter, setFilter] = useState('all');
@@ -11,16 +11,22 @@ const ToDoPage = () => {
     ]);
 
     const newItemRef = createRef();
+    const editItemRef = createRef();
+
+    let editId = 0;
 
     // TODO: after making a functional to do list, let the user sort the items by completion
     const changeFilter = (e) => {
         setFilter(e.target.value);
     };
 
-    // Modal Controls
-    const displayAddModal = (status) => {
+    const displayModal = (content, status, id) => {
         const overlay = document.querySelector(".overlay");
-        const modal = document.querySelector(".modal");
+        const modal = document.querySelector("." + content + "Modal");
+
+        if(id) {
+            editId = id;
+        }
 
         if (status === "open") {
             overlay.style.display = "block";
@@ -35,7 +41,10 @@ const ToDoPage = () => {
         const overlay = document.querySelector(".overlay");
 
         if(e.target === overlay) {
-            displayAddModal("close");
+            displayModal(
+                document.querySelector(".addModal").style.display === "block" ? "add" : "edit" ,
+                "close"
+            );
         }
     };
 
@@ -50,7 +59,7 @@ const ToDoPage = () => {
 
         const newList = [...items, {id: items[items.length - 1].id + 1, description: newItemValue, completed: "no"}];
         newItemRef.current.value = "";
-        displayAddModal("close");
+        displayModal("add", "close");
         setItems(newList);
     };
 
@@ -59,16 +68,27 @@ const ToDoPage = () => {
         setItems(newList);
     };
 
+    const handleEdit = (e) => {
+        e.preventDefault();
+
+        const itemIndex = items.findIndex(item => item.id === editId);
+        items[itemIndex].description = editItemRef.current.value;
+        editItemRef.current.value = "";
+        displayModal("edit", "close");
+        setItems([...items]);
+    };
+
     // display to do items on screen
     const itemList = items.map(item =>
-        <ToDoItem id={item.id} description={item.description} completed={item.completed} handleDelete={handleDelete} />
+        <ToDoItem id={item.id} description={item.description} completed={item.completed} displayModal={displayModal} handleDelete={handleDelete} />
     );
 
     return (
         <>
             <Filter changeFilter={changeFilter} />
             {itemList}
-            <AddButton displayAddModal={displayAddModal} newItemRef={newItemRef} handleAdd={handleAdd} />
+            <button onClick={() => displayModal("add", "open")}>Add</button>
+            <Modal handleAdd={handleAdd} addRef={newItemRef} handleEdit={handleEdit} editRef={editItemRef} />
         </>
     );
 };
