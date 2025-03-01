@@ -4,10 +4,10 @@ import ToDoItem from './ToDoItem';
 import Modal from './Modal';
 
 const ToDoPage = () => {
-    const [filter, setFilter] = useState('all');
+    const [filter, setFilter] = useState('All');
     const [items, setItems] = useState([
-        {id: 100, description: "first item", completed: "no"},
-        {id: 101, description: "second item", completed: "yes"},
+        {id: 100, description: "first item", completed: "Incomplete"},
+        {id: 101, description: "second item", completed: "Completed"},
     ]);
 
     const newItemRef = createRef();
@@ -81,19 +81,19 @@ const ToDoPage = () => {
     const handleComplete = (id) => {
         const itemIndex = items.findIndex(item => item.id === id);
 
-        if (items[itemIndex].completed === "yes") {
-            items[itemIndex].completed = "no";
+        if (items[itemIndex].completed === "Completed") {
+            items[itemIndex].completed = "Incomplete";
         } else {
-            items[itemIndex].completed = "yes";
+            items[itemIndex].completed = "Completed";
         }
 
         setItems([...items]);
     }
 
     // display to do items on screen
-    const itemList = items.map(item =>
-        <ToDoItem id={item.id} description={item.description} completed={item.completed} displayModal={displayModal} handleComplete={handleComplete} handleDelete={handleDelete} />
-    );
+    const itemList = items
+        .filter(item => item.completed === filter || filter === "All")
+        .map(item => <ToDoItem id={item.id} description={item.description} completed={item.completed} displayModal={displayModal} handleComplete={handleComplete} handleDelete={handleDelete} />);
 
     return (
         <>
