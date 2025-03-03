@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+html, body, #root, #root>.toDoPageContent {
+    height: 100%;
+    overflow: hidden;
+}
+
+.itemContainer {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    height: 73%;
+}
+
+.addButton {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 10%;
+    width: 100%;
+    border: 0px;
+    background-color: cornflowerblue;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 5px 5px 20px lightskyblue;
+    cursor: pointer;
+}

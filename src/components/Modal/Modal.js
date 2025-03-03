@@ -9,10 +9,8 @@ const Modal = ({handleAdd, addRef, handleEdit, editRef}) => {
             {/* add new item */}
             <div className="addModal modal">
                 <form action="#" onSubmit={handleAdd}>
-                    <label>
-                        New To Do Item:
-                        <input type="text" name="newItem" ref={addRef} required />
-                    </label>
+                    <label>New To Do Item:</label>
+                    <textarea name="newItem" ref={addRef} required />
                     <button type="submit" className="submitNewItem">Add</button>
                 </form>
             </div>
@@ -20,10 +18,8 @@ const Modal = ({handleAdd, addRef, handleEdit, editRef}) => {
             {/* edit existing item */}
             <div className="editModal modal">
                 <form action="#" onSubmit={handleEdit}>
-                    <label>
-                        Edit To Do Item:
-                        <input type="text" name="editItem" ref={editRef} required />
-                    </label>
+                    <label>Edit To Do Item:</label>
+                    <textarea name="editItem" ref={editRef} required />
                     <button type="submit" className="">Edit</button>
                 </form>
             </div>

@@ -1,0 +1,47 @@
+.toDoItem {
+    position: relative;
+    margin: 30px;
+    height: 300px;
+    width: 300px;
+    border: 5px solid white;
+    border-radius: 20px;
+    background-image: linear-gradient(cornflowerblue, lightskyblue);
+    box-shadow: 10px 10px 5px #00000050;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 5px 5px 20px lightskyblue;
+}
+
+.toDoContent {
+    padding: 30px;
+    height: 240px;
+    width: 240px;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 5px 5px 20px lightskyblue;
+    word-wrap: break-word;
+}
+
+.itemButton {
+    position: absolute;
+    border: 0px;
+    background-color: #00000000;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 20px cornflowerblue;
+    cursor: pointer;
+}
+
+.editButton {
+    bottom: 10px;
+    left: 10px;
+}
+
+.deleteButton {
+    bottom: 10px;
+    right: 10px;
+}
+
+.Completed {
+    text-decoration: line-through;
+}

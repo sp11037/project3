@@ -1,0 +1,56 @@
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 500px;
+    outline: 5px solid lightskyblue;
+    border: 5px solid white;
+    border-radius: 30px;
+    background-color: lightskyblue;
+}
+
+.modal label {
+    display: block;
+    justify-self: center;
+    margin: 20px 0px;
+    width: 85%;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.modal textarea {
+    display: block;
+    justify-self: center;
+    padding: 10px;
+    height: 100px;
+    width: 80%;
+    border: none;
+    font-size: 1.5rem;
+    resize: none;
+}
+
+.modal button {
+    display: block;
+    justify-self: center;
+    margin: 20px;
+    height: 40px;
+    width: 200px;
+    border: 0px;
+    border-radius: 50px;
+    background-color: cornflowerblue;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
