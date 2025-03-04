@@ -20,12 +20,12 @@ const Layout = () => {
             <nav>
                 <button className="barMenuButton" onClick={openMenu}>&#9776;</button>
                 <ul className="horizontalMenu">
-                    <li><Link to="/">To Do</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/project3/">To Do</Link></li>
+                    <li><Link to="/project3/contact">Contact</Link></li>
                 </ul>
                 <ul className="verticalMenu">
-                    <li><Link to="/">To Do</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/project3/">To Do</Link></li>
+                    <li><Link to="/project3/contact">Contact</Link></li>
                 </ul>
             </nav>
             <Outlet />

@@ -19,25 +19,37 @@ const ContactPage = () => {
 
     const handleContactSubmit = (e) => {
         e.preventDefault();
-        const newContact = {fName: e.target.fName.value, lName: e.target.lName.value, eMail: e.target.eMail.value, comments: e.target.comments.value};
+
+        const fName = document.querySelector(".fName");
+        const lName = document.querySelector(".lName");
+        const eMail = document.querySelector(".eMail");
+        const comments = document.querySelector(".comments");
+        const output = document.querySelector(".updateTimestamp");
+
+        const newContact = {fName: fName.value, lName: lName.value, eMail: eMail.value, comments: comments.value};
         setContactData([...contactData, newContact]);
-        window.location.reload();
+
+        fName.value = "";
+        lName.value = "";
+        eMail.value = "";
+        comments.value = "";
+        output.style.display = "none";
     }
 
     return (
         <form action="#" className="contactForm" onChange={handleFormUpdate} onSubmit={handleContactSubmit}>
             <h1>Contact Form</h1>
             <label>First Name:
-                <input type="text" name="fName" autoComplete="off" />
+                <input type="text" className="fName" name="fName" autoComplete="off" />
             </label>
             <label>Last Name:
-                <input type="text" name="lName" autoComplete="off" />
+                <input type="text" className="lName" name="lName" autoComplete="off" />
             </label>
             <label>Email:
-                <input type="email" name="eMail" autoComplete="off" />
+                <input type="email" className="eMail" name="eMail" autoComplete="off" />
             </label>
             <label>Comments:
-                <textarea name="comments" />
+                <textarea className="comments" name="comments" />
             </label>
             <button type="submit">Submit</button>
             <p className="updateTimestamp">Input Updated: {formUpdate}</p>
