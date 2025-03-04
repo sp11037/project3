@@ -12,6 +12,7 @@ html, body, #root, #root>.toDoPageContent {
 .itemContainer {
     display: flex;
     flex-wrap: wrap;
+    overflow-x: hidden;
     overflow-y: auto;
     height: 73%;
 }
@@ -29,4 +30,20 @@ html, body, #root, #root>.toDoPageContent {
     color: white;
     text-shadow: 5px 5px 20px lightskyblue;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+
+.itemContainer {
+    justify-content: center;
+}
+
+}
+
+@media only screen and (max-width: 600px) {
+
+.itemContainer {
+    height: 80%;
+}
+
 }
