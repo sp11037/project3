@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout/Layout';
 import ToDoPage from './components/ToDoPage/ToDoPage';
-import ContactPage from './components/ContactPage';
+import ContactPage from './components/ContactPage/ContactPage';
 import NoPage from './components/NoPage';
 
 function App() {

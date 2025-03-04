@@ -1,0 +1,49 @@
+.contactForm {
+    justify-self: center;
+    margin-top: 50px;
+    width: 25%;
+}
+
+.contactForm h1 {
+    text-align: center;
+}
+
+.contactForm label {
+    display: block;
+    margin: 20px;
+    font-size: 1.5rem;
+}
+
+.contactForm input {
+    float: right;
+    width: 300px;
+    font-size: 1.5rem;
+}
+
+.contactForm textarea {
+    margin-top: 20px;
+    padding: 10px;
+    width: calc(100% - 20px);
+    height: 250px;
+    font-size: 1.5rem;
+}
+
+.contactForm button {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 5px;
+    width: 40%;
+    border: 0;
+    border-radius: 20px;
+    background-color: cornflowerblue;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.updateTimestamp {
+    display: none;
+    margin: 20px;
+    color: green;
+}

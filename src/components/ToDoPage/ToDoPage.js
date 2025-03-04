@@ -6,10 +6,7 @@ import './ToDoPage.css';
 
 const ToDoPage = () => {
     const [filter, setFilter] = useState('All');
-    const [items, setItems] = useState([
-        {id: 100, description: "buy more cheese", completed: "Incomplete"},
-        {id: 101, description: "go to the hospital", completed: "Completed"},
-    ]);
+    const [items, setItems] = useState([]);
 
     // references for modal input
     const addRef = createRef();
@@ -60,7 +57,10 @@ const ToDoPage = () => {
     const handleAdd = (e) => {
         e.preventDefault();
 
-        const newId = items[items.length - 1].id + 1;
+        let newId = 100;
+        if (items.length > 0) {
+            newId = items[items.length - 1].id + 1;
+        }
         const newItemValue = addRef.current.value;
 
         const newList = [...items, {id: newId, description: newItemValue, completed: "Incomplete"}];
